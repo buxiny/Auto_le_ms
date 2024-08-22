@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: le_ms
+name: Auto_le_ms
 
 on:
   repository_dispatch:
