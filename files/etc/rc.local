@@ -1,0 +1,39 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+sleep 1
+# 追加定时任务
+cat << "EOF" >> /var/spool/cron/crontabs/root
+45 0 * * 5 //root/wrt-backup.sh
+EOF
+# 覆盖软件源
+cat << "EOF" > /etc/opkg/distfeeds.conf
+src/gz openwrt_core https://mirrors.tencent.com/lede/snapshots/targets/x86/64/packages
+src/gz openwrt_base https://mirrors.tencent.com/lede/snapshots/packages/x86_64/base
+src/gz openwrt_luci https://mirrors.tencent.com/lede/releases/18.06.9/packages/x86_64/luci
+src/gz openwrt_packages https://mirrors.tencent.com/lede/snapshots/packages/x86_64/packages
+src/gz openwrt_routing https://mirrors.tencent.com/lede/snapshots/packages/x86_64/routing
+src/gz openwrt_telephony https://mirrors.tencent.com/lede/snapshots/packages/x86_64/telephony
+EOF
+# 覆盖配置文件
+wget -N -P /etc http://192.168.10.2/openwrt/AdGuardHome.yaml
+wget -N -P /etc/config http://192.168.10.2/openwrt/config/shadowsocksr
+wget -N -P /etc/config http://192.168.10.2/openwrt/config/mosdns
+wget -N -P /etc/mosdns/rule http://192.168.10.2/openwrt/mosdns/hosts.txt
+wget -N -P /etc http://192.168.10.2/openwrt/dnsmasq.conf
+sleep 1
+
+# 重启服务
+service cron restart
+/etc/init.d/shadowsocksr restart
+mosdns service restart
+/etc/init.d/dnsmasq restart
+sleep 1
+
+# 清空rc.local
+cat << "EOF" > /etc/rc.local
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+exit 0
+EOF
+exit 0
