@@ -17,17 +17,19 @@ src/gz openwrt_telephony https://mirrors.tencent.com/lede/snapshots/packages/x86
 EOF
 # 覆盖配置文件
 wget -N -P /etc http://192.168.10.2/openwrt/AdGuardHome.yaml
-wget -N -P /etc/config http://192.168.10.2/openwrt/config/shadowsocksr
-wget -N -P /etc/config http://192.168.10.2/openwrt/config/mosdns
+wget -O /etc/config/AdGuardHome http://192.168.10.2/openwrt/config/AdGuardHome-ms
+wget -O /etc/config/shadowsocksr http://192.168.10.2/openwrt/config/shadowsocksr-ms
+wget -O /etc/config/mosdns http://192.168.10.2/openwrt/config/mosdns-ms
 wget -N -P /etc/mosdns/rule http://192.168.10.2/openwrt/mosdns/hosts.txt
 wget -N -P /etc http://192.168.10.2/openwrt/dnsmasq.conf
 sleep 1
 
 # 重启服务
 service cron restart
-/etc/init.d/shadowsocksr restart
-mosdns service restart
 /etc/init.d/dnsmasq restart
+mosdns service restart
+service AdGuardHome restart
+/etc/init.d/shadowsocksr restart
 sleep 1
 
 # 清空rc.local
