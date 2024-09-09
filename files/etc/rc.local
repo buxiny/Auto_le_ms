@@ -15,6 +15,8 @@ src/gz openwrt_packages https://mirrors.tencent.com/lede/snapshots/packages/x86_
 src/gz openwrt_routing https://mirrors.tencent.com/lede/snapshots/packages/x86_64/routing
 src/gz openwrt_telephony https://mirrors.tencent.com/lede/snapshots/packages/x86_64/telephony
 EOF
+
+sleep 2
 # 覆盖配置文件
 wget -N -P /etc http://192.168.10.2/openwrt/AdGuardHome.yaml
 wget -O /etc/config/AdGuardHome http://192.168.10.2/openwrt/config/AdGuardHome-ms
@@ -23,16 +25,16 @@ wget -N -P /etc/ssrplus http://192.168.10.2/openwrt/ssrplus/white.list
 wget -O /etc/config/mosdns http://192.168.10.2/openwrt/config/mosdns-ms
 wget -N -P /etc/mosdns/rule http://192.168.10.2/openwrt/mosdns/hosts.txt
 wget -N -P /etc http://192.168.10.2/openwrt/dnsmasq.conf
-sleep 1
 
+sleep 1
 # 重启服务
 service cron restart
 /etc/init.d/dnsmasq restart
 mosdns service restart
 service AdGuardHome restart
 /etc/init.d/shadowsocksr restart
-sleep 1
 
+sleep 1
 # 清空rc.local
 cat << "EOF" > /etc/rc.local
 # Put your custom commands here that should be executed once
