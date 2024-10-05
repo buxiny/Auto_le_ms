@@ -40,7 +40,7 @@ service keepalived restart
 
 sleep 5
 
-opkg install http://192.168.10.2/ipk/cdnspeedtest_2.2.5-1_x86_64.ipk
+opkg install http://192.168.10.6/openwrt/cdnspeedtest_2.2.5-1_x86_64.ipk
 
 # 删除 starting.sh
 rm -rf /etc/uci-defaults/starting.sh
