@@ -20,9 +20,9 @@ sleep 2
 # 覆盖配置文件
 wget -N -P /etc http://192.168.10.6/openwrt/AdGuardHome.yaml
 wget -O /etc/config/AdGuardHome http://192.168.10.6/openwrt/config/AdGuardHome-ms
-wget -O /etc/config/shadowsocksr http://192.168.10.6/openwrt/config/shadowsocksr-ms
+#wget -O /etc/config/shadowsocksr http://192.168.10.6/openwrt/config/shadowsocksr-ms
 wget -N -P /etc/ssrplus http://192.168.10.6/openwrt/ssrplus/white.list
-wget -O /etc/config/mosdns http://192.168.10.6/openwrt/config/mosdns-ms
+#wget -O /etc/config/mosdns http://192.168.10.6/openwrt/config/mosdns-ms
 wget -N -P /etc/mosdns/rule http://192.168.10.6/openwrt/mosdns/blocklist.txt
 wget -N -P /etc/mosdns/rule http://192.168.10.6/openwrt/mosdns/whitelist.txt
 wget -N -P /etc/mosdns/rule http://192.168.10.6/openwrt/mosdns/hosts.txt
