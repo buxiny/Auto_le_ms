@@ -1,7 +1,0 @@
-
-config global
-	option root_path '/'
-	option port '5012'
-	option project_directory '/usr/bin'
-	option enable '1'
-
