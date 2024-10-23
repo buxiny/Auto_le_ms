@@ -1,13 +1,18 @@
 
 config interface 'loopback'
+	option device 'lo'
 	option proto 'static'
 	option ipaddr '127.0.0.1'
 	option netmask '255.0.0.0'
-	option device 'lo'
 
 config globals 'globals'
-	option ula_prefix 'fd84:68ab:5bfa::/48'
+	option ula_prefix 'fd8a:26df:6f18::/48'
 	option packet_steering '1'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'eth0'
 
 config interface 'lan'
 	option proto 'static'
@@ -16,9 +21,9 @@ config interface 'lan'
 	option gateway '192.168.10.8'
 	option device 'eth0'
 
-config interface 'LAN6'
+config interface 'lan6'
 	option proto 'dhcpv6'
+	option device 'eth0'
 	option reqaddress 'try'
 	option reqprefix 'auto'
-	option device 'eth0'
 
