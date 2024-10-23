@@ -4,16 +4,18 @@ config defaults
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'REJECT'
-	option flow_offloading '0'
 	option flow_offloading_hw '0'
-	option fullcone '2'
+	option flow_offloading '1'
+	option fullcone '1'
 
 config zone
 	option name 'lan'
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
-	option network 'lan LAN6'
+	list network 'lan'
+	list network 'LAN6'
+	list network 'lan6'
 
 config zone
 	option name 'wan'
@@ -135,17 +137,6 @@ config rule
 config include
 	option path '/etc/firewall.user'
 
-config include 'zerotier'
-	option type 'script'
-	option path '/etc/zerotier.start'
-	option reload '1'
-
-config include 'miniupnpd'
-	option type 'script'
-	option path '/usr/share/miniupnpd/firewall.include'
-	option family 'any'
-	option reload '1'
-
 config include 'passwall'
 	option type 'script'
 	option path '/var/etc/passwall.include'
@@ -154,6 +145,12 @@ config include 'passwall'
 config include 'passwall_server'
 	option type 'script'
 	option path '/var/etc/passwall_server.include'
+	option reload '1'
+
+config include 'miniupnpd'
+	option type 'script'
+	option path '/usr/share/miniupnpd/firewall.include'
+	option family 'any'
 	option reload '1'
 
 config include 'shadowsocksr'
