@@ -1,7 +1,0 @@
-
-config dropbear
-	option PasswordAuth 'on'
-	option Interface 'lan'
-	option Port '222'
-	option RootPasswordAuth 'off'
-
