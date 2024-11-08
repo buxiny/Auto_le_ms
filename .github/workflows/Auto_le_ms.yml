@@ -15,8 +15,8 @@ name: Auto_le_ms
 on:
   repository_dispatch:
   workflow_dispatch:
-  schedule:
-    - cron: 2 21 8 * *
+#  schedule:
+#    - cron: 2 21 8 * *
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
